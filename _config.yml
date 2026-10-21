@@ -1,2 +1,7 @@
 title: Account Onboarding Service
 description: Architecture overview — domain-tailored workflow engine, Clean Architecture, reliable asynchronous processing on Azure
+defaults:
+  - scope:
+      path: ""
+    values:
+      title: Account Onboarding Service
