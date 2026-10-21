@@ -10,6 +10,8 @@ end to end: React micro-frontend → BFF → service.
 **Role:** solution architect and senior developer — designed the whole system
 and implemented the most critical parts of it.
 
+**Built:** 2026.
+
 **System of record for the *process*, not the account.** The service owns the
 **onboarding process** — a journey's state from entry up to account creation.
 Once the account exists in the **master account registry** (the primary,
