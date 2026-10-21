@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" width="1100" height="700" role="img" aria-labelledby="title desc">
+  <title id="title">System context</title>
+  <desc id="desc">The self-service channel end to end: a micro-frontend in the customer portal calls a thin BFF, which calls the onboarding backend service. Around them sit external systems: web analytics, identity provider, observability backend, master account registry, CRM, process orchestration and customer engagement platform.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2f4f8"/>
+      <stop offset="1" stop-color="#e6eaf1"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.45" r="0.5">
+      <stop offset="0" stop-color="#4f6bff" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#4f6bff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ours" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5f7ff"/>
+      <stop offset="1" stop-color="#eaefff"/>
+    </linearGradient>
+    <linearGradient id="oursStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f6bff"/>
+      <stop offset="1" stop-color="#9b5cff"/>
+    </linearGradient>
+    <linearGradient id="ext" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#fbfcfe"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#0f172a" fill-opacity="0.08"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <marker id="aAccent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6d84ff"/>
+    </marker>
+    <marker id="aMuted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a7b2c6"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-25%" width="120%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#1e293b" flood-opacity="0.08"/>
+    </filter>
+    <style>
+      text { font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.2px; fill: #4f6bff; }
+      .h1      { font-size: 21px; font-weight: 600; fill: #0f172a; }
+      .ttl     { font-size: 14px; font-weight: 600; fill: #111827; }
+      .ttlL    { font-size: 16px; font-weight: 600; fill: #0b1020; }
+      .sub     { font-size: 11.5px; fill: #64748b; }
+      .subO    { font-size: 11.5px; fill: #4a58b8; }
+      .pill    { font-size: 11px; fill: #475569; }
+      .chip    { font-size: 11px; font-weight: 500; fill: #3546b3; }
+      .legend  { font-size: 11.5px; fill: #64748b; }
+      .chrome  { font-size: 11px; fill: #94a3b8; }
+      .cardO   { fill: url(#ours); stroke: url(#oursStroke); stroke-width: 1.5; filter: url(#shadow); }
+      .cardE   { fill: url(#ext); stroke: #dde3ee; stroke-width: 1.2; filter: url(#shadow); }
+      .glowO   { fill: none; stroke: #6d8dff; stroke-width: 6; stroke-opacity: 0.22; }
+      .tileO   { fill: #4f6bff; fill-opacity: 0.12; }
+      .tileE   { fill: #0f172a; fill-opacity: 0.05; }
+      .icO     { fill: none; stroke: #4f6bff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .icE     { fill: none; stroke: #64748b; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .lnO     { fill: none; stroke: #6d84ff; stroke-width: 1.8; }
+      .lnE     { fill: none; stroke: #a7b2c6; stroke-width: 1.5; }
+      .pillBg  { fill: #ffffff; stroke: #d6dce8; stroke-width: 1; }
+      .chipBg  { fill: #4f6bff; fill-opacity: 0.08; stroke: #4f6bff; stroke-opacity: 0.35; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1100" height="700" rx="22" fill="url(#bg)"/>
+  <rect width="1100" height="700" rx="22" fill="url(#dots)"/>
+  <ellipse cx="550" cy="300" rx="420" ry="300" fill="url(#halo)"/>
+
+  <!-- Header -->
+  <text class="eyebrow" x="44" y="48">SYSTEM CONTEXT</text>
+  <text class="h1" x="44" y="76">Self-service account onboarding, end to end</text>
+  <circle cx="842" cy="56" r="5" fill="url(#oursStroke)"/>
+  <text class="legend" x="854" y="60">built in this project</text>
+  <circle cx="985" cy="56" r="5" fill="#c3ccdb"/>
+  <text class="legend" x="997" y="60">external</text>
+
+  <!-- ===== Connectors (drawn first, under cards) ===== -->
+  <!-- MFE -> analytics -->
+  <path class="lnE" d="M400 168 H274" marker-end="url(#aMuted)"/>
+  <rect class="pillBg" x="280" y="151" width="112" height="34" rx="10"/>
+  <text class="pill" x="336" y="165" text-anchor="middle">client-side</text>
+  <text class="pill" x="336" y="179" text-anchor="middle">analytics &amp; tagging</text>
+
+  <!-- MFE -> BFF -->
+  <path class="lnO" d="M550 214 V264" marker-end="url(#aAccent)"/>
+  <rect class="pillBg" x="478" y="228" width="144" height="22" rx="11"/>
+  <text class="pill" x="550" y="243" text-anchor="middle">HTTPS · UI-shaped API</text>
+
+  <!-- BFF <-> IdP -->
+  <path class="lnE" d="M704 302 H826" marker-start="url(#aMuted)" marker-end="url(#aMuted)"/>
+  <rect class="pillBg" x="717" y="291" width="96" height="22" rx="11"/>
+  <text class="pill" x="765" y="306" text-anchor="middle">OAuth / OIDC</text>
+
+  <!-- BFF -> service -->
+  <path class="lnO" d="M550 334 V386" marker-end="url(#aAccent)"/>
+
+  <!-- service -> observability -->
+  <path class="lnE" d="M380 443 H274" marker-end="url(#aMuted)"/>
+  <rect class="pillBg" x="276" y="426" width="100" height="34" rx="10"/>
+  <text class="pill" x="326" y="440" text-anchor="middle">OTel traces</text>
+  <text class="pill" x="326" y="454" text-anchor="middle">metrics · logs</text>
+
+  <!-- service -> four downstream systems -->
+  <path class="lnE" d="M550 494 V540"/>
+  <path class="lnE" d="M160 540 H940"/>
+  <circle cx="550" cy="540" r="3.5" fill="#6d84ff"/>
+  <path class="lnE" d="M160 540 V584" marker-end="url(#aMuted)"/>
+  <path class="lnE" d="M420 540 V584" marker-end="url(#aMuted)"/>
+  <path class="lnE" d="M680 540 V584" marker-end="url(#aMuted)"/>
+  <path class="lnE" d="M940 540 V584" marker-end="url(#aMuted)"/>
+  <rect class="pillBg" x="580" y="529" width="118" height="22" rx="11"/>
+  <text class="pill" x="639" y="544" text-anchor="middle">adapters · async</text>
+
+  <!-- ===== Built in this project ===== -->
+  <!-- Browser window with the micro-frontend -->
+  <rect class="glowO" x="400" y="96" width="300" height="118" rx="14" filter="url(#glow)"/>
+  <rect x="400" y="96" width="300" height="118" rx="14" fill="#ffffff" stroke="#dde3ee" style="filter:url(#shadow)" stroke-width="1.2"/>
+  <path d="M400 122 H700" stroke="#e5e9f1" stroke-width="1"/>
+  <circle cx="417" cy="109" r="4" fill="#ff5f57" fill-opacity="0.85"/>
+  <circle cx="431" cy="109" r="4" fill="#febc2e" fill-opacity="0.85"/>
+  <circle cx="445" cy="109" r="4" fill="#28c840" fill-opacity="0.85"/>
+  <text class="chrome" x="462" y="113">Customer portal · app-shell</text>
+
+  <rect class="cardO" x="414" y="136" width="272" height="64" rx="11"/>
+  <rect class="tileO" x="428" y="152" width="32" height="32" rx="8"/>
+  <g transform="translate(436 160)">
+    <rect class="icO" x="1" y="2" width="14" height="12" rx="2"/>
+    <path class="icO" d="M1 6 H15 M6 6 V14"/>
+  </g>
+  <text class="ttl" x="472" y="163">Onboarding micro-frontend</text>
+  <text class="subO" x="472" y="182">React MFE · shape-only</text>
+
+  <!-- BFF -->
+  <rect class="glowO" x="400" y="270" width="300" height="64" rx="12" filter="url(#glow)"/>
+  <rect class="cardO" x="400" y="270" width="300" height="64" rx="12"/>
+  <rect class="tileO" x="414" y="286" width="32" height="32" rx="8"/>
+  <g transform="translate(422 294)">
+    <path class="icO" d="M1 5 L8 1 L15 5 L8 9 Z"/>
+    <path class="icO" d="M1 10 L8 14 L15 10"/>
+  </g>
+  <text class="ttl" x="458" y="297">Backend-for-frontend</text>
+  <text class="subO" x="458" y="316">thin · UI-shaped API · UI-only services</text>
+
+  <!-- Backend service -->
+  <rect class="glowO" x="380" y="392" width="340" height="102" rx="14" filter="url(#glow)"/>
+  <rect class="cardO" x="380" y="392" width="340" height="102" rx="14"/>
+  <rect class="tileO" x="396" y="408" width="34" height="34" rx="9"/>
+  <g transform="translate(405 417)">
+    <path class="icO" d="M8 1 L15 4.5 V11.5 L8 15 L1 11.5 V4.5 Z"/>
+    <path class="icO" d="M1 4.5 L8 8 L15 4.5 M8 8 V15"/>
+  </g>
+  <text class="ttlL" x="442" y="422">Onboarding backend service</text>
+  <text class="subO" x="442" y="440">workflow engine + variant plugins</text>
+  <rect class="chipBg" x="442" y="456" width="92" height="22" rx="11"/>
+  <text class="chip" x="488" y="471" text-anchor="middle">WebApi host</text>
+  <rect class="chipBg" x="542" y="456" width="160" height="22" rx="11"/>
+  <text class="chip" x="622" y="471" text-anchor="middle">Command-processor host</text>
+
+  <!-- ===== External systems ===== -->
+  <!-- Web analytics -->
+  <rect class="cardE" x="40" y="136" width="230" height="64" rx="12"/>
+  <rect class="tileE" x="54" y="152" width="32" height="32" rx="8"/>
+  <g transform="translate(62 160)">
+    <path class="icE" d="M2 14 V9 M6 14 V5 M10 14 V7 M14 14 V2"/>
+  </g>
+  <text class="ttl" x="98" y="163">Web analytics</text>
+  <text class="sub" x="98" y="182">tag manager</text>
+
+  <!-- Identity provider -->
+  <rect class="cardE" x="830" y="270" width="230" height="64" rx="12"/>
+  <rect class="tileE" x="844" y="286" width="32" height="32" rx="8"/>
+  <g transform="translate(852 294)">
+    <path class="icE" d="M8 1 L14 3.5 V8 C14 11.5 11 14 8 15 C5 14 2 11.5 2 8 V3.5 Z"/>
+    <path class="icE" d="M5.5 8 L7.3 9.8 L10.8 6.3"/>
+  </g>
+  <text class="ttl" x="888" y="297">Identity provider</text>
+  <text class="sub" x="888" y="316">sign-in · tokens</text>
+
+  <!-- Observability backend -->
+  <rect class="cardE" x="40" y="411" width="230" height="64" rx="12"/>
+  <rect class="tileE" x="54" y="427" width="32" height="32" rx="8"/>
+  <g transform="translate(62 435)">
+    <path class="icE" d="M1 8 H4 L6 3 L9 13 L11 8 H15"/>
+  </g>
+  <text class="ttl" x="98" y="438">Honeycomb</text>
+  <text class="sub" x="98" y="457">traces · dashboards · SLOs</text>
+
+  <!-- Master account registry -->
+  <rect class="cardE" x="45" y="590" width="230" height="64" rx="12"/>
+  <rect class="tileE" x="59" y="606" width="32" height="32" rx="8"/>
+  <g transform="translate(67 614)">
+    <ellipse class="icE" cx="8" cy="3.5" rx="6" ry="2.5"/>
+    <path class="icE" d="M2 3.5 V12.5 C2 13.9 4.7 15 8 15 C11.3 15 14 13.9 14 12.5 V3.5 M2 8 C2 9.4 4.7 10.5 8 10.5 C11.3 10.5 14 9.4 14 8"/>
+  </g>
+  <text class="ttl" x="103" y="617">Master account registry</text>
+  <text class="sub" x="103" y="636">authoritative accounts</text>
+
+  <!-- CRM -->
+  <rect class="cardE" x="305" y="590" width="230" height="64" rx="12"/>
+  <rect class="tileE" x="319" y="606" width="32" height="32" rx="8"/>
+  <g transform="translate(327 614)">
+    <circle class="icE" cx="6" cy="5" r="2.6"/>
+    <path class="icE" d="M1.5 14 C1.5 10.8 3.5 9.2 6 9.2 C8.5 9.2 10.5 10.8 10.5 14"/>
+    <circle class="icE" cx="11.5" cy="4" r="2"/>
+    <path class="icE" d="M12 8.3 C13.8 8.6 14.8 10 14.8 12.5"/>
+  </g>
+  <text class="ttl" x="363" y="617">CRM</text>
+  <text class="sub" x="363" y="636">leads</text>
+
+  <!-- Process orchestration -->
+  <rect class="cardE" x="565" y="590" width="230" height="64" rx="12"/>
+  <rect class="tileE" x="579" y="606" width="32" height="32" rx="8"/>
+  <g transform="translate(587 614)">
+    <circle class="icE" cx="3" cy="8" r="2"/>
+    <circle class="icE" cx="13" cy="3" r="2"/>
+    <circle class="icE" cx="13" cy="13" r="2"/>
+    <path class="icE" d="M5 7 L11 4 M5 9 L11 12"/>
+  </g>
+  <text class="ttl" x="623" y="617">Process orchestration</text>
+  <text class="sub" x="623" y="636">creation &amp; provisioning</text>
+
+  <!-- Customer engagement platform -->
+  <rect class="cardE" x="825" y="590" width="230" height="64" rx="12"/>
+  <rect class="tileE" x="839" y="606" width="32" height="32" rx="8"/>
+  <g transform="translate(847 614)">
+    <path class="icE" d="M2 3 H14 V11 H7 L4 14 V11 H2 Z"/>
+  </g>
+  <text class="ttl" x="883" y="617">Customer engagement</text>
+  <text class="sub" x="883" y="636">server-side events</text>
+</svg>

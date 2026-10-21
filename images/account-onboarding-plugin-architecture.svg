@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" width="1100" height="640" role="img" aria-labelledby="title desc">
+  <title id="title">Plugin architecture</title>
+  <desc id="desc">The workflow engine owns, once for every variant, the state machine, navigation history, dead-ends and recovery, async command dispatch, reconciliation, audit, reporting, telemetry, offline sandbox and the plugin registry. It exposes five extension points: step graph, step handlers, input and validation contracts, external reactions and error catalogue. The self-service variant plugin, in production, implements them; a second channel under construction plugs into the same seams.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2f4f8"/>
+      <stop offset="1" stop-color="#e6eaf1"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4f6bff" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#4f6bff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ours" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5f7ff"/>
+      <stop offset="1" stop-color="#eaefff"/>
+    </linearGradient>
+    <linearGradient id="oursStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f6bff"/>
+      <stop offset="1" stop-color="#9b5cff"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#0f172a" fill-opacity="0.08"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-25%" width="120%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#1e293b" flood-opacity="0.08"/>
+    </filter>
+    <marker id="aAccent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6d84ff"/>
+    </marker>
+    <style>
+      text { font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.2px; fill: #4f6bff; }
+      .eyebrowS{ font-size: 10.5px; font-weight: 700; letter-spacing: 1.8px; fill: #7c8aa5; }
+      .h1      { font-size: 21px; font-weight: 600; fill: #0f172a; }
+      .ttl     { font-size: 14px; font-weight: 600; fill: #111827; }
+      .ttlL    { font-size: 16px; font-weight: 600; fill: #0b1020; }
+      .sub     { font-size: 11.5px; fill: #64748b; }
+      .subO    { font-size: 11.5px; fill: #4a58b8; }
+      .pill    { font-size: 11px; fill: #475569; }
+      .chipT   { font-size: 11.5px; fill: #334155; }
+      .legend  { font-size: 11.5px; fill: #64748b; }
+      .badgeGT { font-size: 10.5px; font-weight: 600; fill: #15803d; }
+      .badgeAT { font-size: 10.5px; font-weight: 600; fill: #b45309; }
+      .badgeIT { font-size: 10.5px; font-weight: 600; fill: #3546b3; }
+      .engine  { fill: #ffffff; fill-opacity: 0.7; stroke: url(#oursStroke); stroke-width: 1.6; filter: url(#shadow); }
+      .cardO   { fill: url(#ours); stroke: url(#oursStroke); stroke-width: 1.5; filter: url(#shadow); }
+      .cardF   { fill: #ffffff; fill-opacity: 0.6; stroke: #a7b2c6; stroke-width: 1.3; stroke-dasharray: 6 4; }
+      .seam    { fill: #ffffff; stroke: #b9c5fb; stroke-width: 1.2; filter: url(#shadow); }
+      .chip    { fill: #ffffff; stroke: #d6dce8; stroke-width: 1; }
+      .glowO   { fill: none; stroke: #6d8dff; stroke-width: 6; stroke-opacity: 0.22; }
+      .tileO   { fill: #4f6bff; fill-opacity: 0.12; }
+      .tileE   { fill: #0f172a; fill-opacity: 0.05; }
+      .icO     { fill: none; stroke: #4f6bff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .icE     { fill: none; stroke: #64748b; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .lnO     { fill: none; stroke: #6d84ff; stroke-width: 1.8; }
+      .lnF     { fill: none; stroke: #a7b2c6; stroke-width: 1.5; stroke-dasharray: 5 4; }
+      .pillBg  { fill: #ffffff; stroke: #d6dce8; stroke-width: 1; }
+      .socket  { fill: #ffffff; stroke: #6d84ff; stroke-width: 1.6; }
+      .badgeG  { fill: #16a34a; fill-opacity: 0.10; stroke: #16a34a; stroke-opacity: 0.35; stroke-width: 1; }
+      .badgeA  { fill: #d97706; fill-opacity: 0.10; stroke: #d97706; stroke-opacity: 0.35; stroke-width: 1; }
+      .badgeI  { fill: #4f6bff; fill-opacity: 0.08; stroke: #4f6bff; stroke-opacity: 0.35; stroke-width: 1; }
+      .divider { stroke: #dfe4ef; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1100" height="640" rx="22" fill="url(#bg)"/>
+  <rect width="1100" height="640" rx="22" fill="url(#dots)"/>
+  <ellipse cx="550" cy="300" rx="480" ry="280" fill="url(#halo)"/>
+
+  <!-- Header -->
+  <text class="eyebrow" x="44" y="48">PLUGIN ARCHITECTURE</text>
+  <text class="h1" x="44" y="76">One engine, many onboarding variants</text>
+  <circle cx="842" cy="56" r="5" fill="url(#oursStroke)"/>
+  <text class="legend" x="854" y="60">built in this project</text>
+  <circle cx="985" cy="56" r="5" fill="#c3ccdb"/>
+  <text class="legend" x="997" y="60">planned</text>
+
+  <!-- ===== Workflow engine ===== -->
+  <rect class="glowO" x="60" y="100" width="980" height="320" rx="18" filter="url(#glow)"/>
+  <rect class="engine" x="60" y="100" width="980" height="320" rx="18"/>
+  <rect class="tileO" x="84" y="118" width="36" height="36" rx="9"/>
+  <g transform="translate(94 128)">
+    <circle class="icO" cx="8" cy="8" r="2.6"/>
+    <path class="icO" d="M8 1 V3.5 M8 12.5 V15 M1 8 H3.5 M12.5 8 H15 M3 3 L4.8 4.8 M11.2 11.2 L13 13 M3 13 L4.8 11.2 M11.2 4.8 L13 3"/>
+  </g>
+  <text class="ttlL" x="132" y="134">Workflow engine</text>
+  <text class="subO" x="132" y="151">generic core · tailored to account onboarding, not arbitrary workflows</text>
+
+  <text class="eyebrowS" x="84" y="186">OWNS ONCE, FOR EVERY VARIANT</text>
+  <!-- row 1 -->
+  <rect class="chip" x="84"  y="196" width="176" height="26" rx="13"/>
+  <text class="chipT" x="172" y="213" text-anchor="middle">state machine</text>
+  <rect class="chip" x="270" y="196" width="176" height="26" rx="13"/>
+  <text class="chipT" x="358" y="213" text-anchor="middle">progress &amp; navigation history</text>
+  <rect class="chip" x="456" y="196" width="176" height="26" rx="13"/>
+  <text class="chipT" x="544" y="213" text-anchor="middle">dead-ends + recovery</text>
+  <rect class="chip" x="642" y="196" width="176" height="26" rx="13"/>
+  <text class="chipT" x="730" y="213" text-anchor="middle">async command dispatch</text>
+  <rect class="chip" x="828" y="196" width="188" height="26" rx="13"/>
+  <text class="chipT" x="922" y="213" text-anchor="middle">reconciliation</text>
+  <!-- row 2 -->
+  <rect class="chip" x="84"  y="230" width="176" height="26" rx="13"/>
+  <text class="chipT" x="172" y="247" text-anchor="middle">audit</text>
+  <rect class="chip" x="270" y="230" width="176" height="26" rx="13"/>
+  <text class="chipT" x="358" y="247" text-anchor="middle">reporting</text>
+  <rect class="chip" x="456" y="230" width="176" height="26" rx="13"/>
+  <text class="chipT" x="544" y="247" text-anchor="middle">telemetry</text>
+  <rect class="chip" x="642" y="230" width="176" height="26" rx="13"/>
+  <text class="chipT" x="730" y="247" text-anchor="middle">offline sandbox</text>
+  <rect class="chip" x="828" y="230" width="188" height="26" rx="13"/>
+  <text class="chipT" x="922" y="247" text-anchor="middle">plugin registry (id + version)</text>
+
+  <path class="divider" d="M84 274 H1016"/>
+  <text class="eyebrowS" x="84" y="298">EXTENSION POINTS · A VARIANT IMPLEMENTS EACH</text>
+
+  <!-- Seams -->
+  <rect class="seam" x="84" y="308" width="172" height="84" rx="12"/>
+  <rect class="tileO" x="98" y="320" width="30" height="30" rx="8"/>
+  <g transform="translate(105 327)">
+    <circle class="icO" cx="3" cy="8" r="2"/><circle class="icO" cx="13" cy="3" r="2"/><circle class="icO" cx="13" cy="13" r="2"/>
+    <path class="icO" d="M5 7 L11 4 M5 9 L11 12"/>
+  </g>
+  <text class="ttl" x="98" y="368">Step graph</text>
+  <text class="sub" x="98" y="384">states + transitions</text>
+
+  <rect class="seam" x="274" y="308" width="172" height="84" rx="12"/>
+  <rect class="tileO" x="288" y="320" width="30" height="30" rx="8"/>
+  <g transform="translate(295 327)">
+    <path class="icO" d="M5 3 L1 8 L5 13 M11 3 L15 8 L11 13"/>
+  </g>
+  <text class="ttl" x="288" y="368">Step handlers</text>
+  <text class="sub" x="288" y="384">domain rules</text>
+
+  <rect class="seam" x="464" y="308" width="172" height="84" rx="12"/>
+  <rect class="tileO" x="478" y="320" width="30" height="30" rx="8"/>
+  <g transform="translate(485 327)">
+    <rect class="icO" x="1" y="1" width="14" height="14" rx="3"/>
+    <path class="icO" d="M4.5 8 L7 10.5 L11.5 5.5"/>
+  </g>
+  <text class="ttl" x="478" y="368">Input &amp; validation</text>
+  <text class="sub" x="478" y="384">contracts</text>
+
+  <rect class="seam" x="654" y="308" width="172" height="84" rx="12"/>
+  <rect class="tileO" x="668" y="320" width="30" height="30" rx="8"/>
+  <g transform="translate(675 327)">
+    <path class="icO" d="M9.5 1 L3 9 H8 L6.5 15 L13 7 H8 Z"/>
+  </g>
+  <text class="ttl" x="668" y="368">External reactions</text>
+  <text class="sub" x="668" y="384">async commands</text>
+
+  <rect class="seam" x="844" y="308" width="172" height="84" rx="12"/>
+  <rect class="tileO" x="858" y="320" width="30" height="30" rx="8"/>
+  <g transform="translate(865 327)">
+    <path class="icO" d="M8 1.5 L15 14 H1 Z M8 6 V9.5 M8 11.8 V12"/>
+  </g>
+  <text class="ttl" x="858" y="368">Error catalogue</text>
+  <text class="sub" x="858" y="384">domain errors</text>
+
+  <!-- ===== Wiring ===== -->
+  <path class="lnO" d="M362 500 V456"/>
+  <path class="lnF" d="M848 500 V456"/>
+  <path class="lnO" d="M170 456 H930"/>
+  <path class="lnO" d="M170 456 V400" marker-end="url(#aAccent)"/>
+  <path class="lnO" d="M360 456 V400" marker-end="url(#aAccent)"/>
+  <path class="lnO" d="M550 456 V400" marker-end="url(#aAccent)"/>
+  <path class="lnO" d="M740 456 V400" marker-end="url(#aAccent)"/>
+  <path class="lnO" d="M930 456 V400" marker-end="url(#aAccent)"/>
+  <circle class="socket" cx="170" cy="392" r="4.5"/>
+  <circle class="socket" cx="360" cy="392" r="4.5"/>
+  <circle class="socket" cx="550" cy="392" r="4.5"/>
+  <circle class="socket" cx="740" cy="392" r="4.5"/>
+  <circle class="socket" cx="930" cy="392" r="4.5"/>
+  <rect class="pillBg" x="385" y="445" width="140" height="22" rx="11"/>
+  <text class="pill" x="455" y="460" text-anchor="middle">implements the seams</text>
+
+  <!-- ===== Variant plugins ===== -->
+  <rect class="glowO" x="84" y="500" width="556" height="80" rx="14" filter="url(#glow)"/>
+  <rect class="cardO" x="84" y="500" width="556" height="80" rx="14"/>
+  <rect class="tileO" x="100" y="516" width="34" height="34" rx="9"/>
+  <g transform="translate(109 525)">
+    <path class="icO" d="M6 1 V4 M10 1 V4 M3 4 H13 V8 C13 11 10.8 13 8 13 C5.2 13 3 11 3 8 Z M8 13 V15"/>
+  </g>
+  <text class="ttlL" x="148" y="530">Self-service variant plugin</text>
+  <rect class="badgeG" x="368" y="516" width="90" height="20" rx="10"/>
+  <text class="badgeGT" x="413" y="530" text-anchor="middle">in production</text>
+  <rect class="badgeI" x="466" y="516" width="86" height="20" rx="10"/>
+  <text class="badgeIT" x="509" y="530" text-anchor="middle">id + version</text>
+  <text class="subO" x="148" y="552">its own steps, rules, payloads, reactions and errors</text>
+  <text class="sub" x="148" y="569">no infrastructure · registered at startup</text>
+
+  <rect class="cardF" x="680" y="500" width="336" height="80" rx="14"/>
+  <rect class="tileE" x="696" y="516" width="34" height="34" rx="9"/>
+  <g transform="translate(705 525)">
+    <path class="icE" d="M6 1 V4 M10 1 V4 M3 4 H13 V8 C13 11 10.8 13 8 13 C5.2 13 3 11 3 8 Z M8 13 V15"/>
+  </g>
+  <text class="ttl" x="744" y="531">Second channel</text>
+  <rect class="badgeA" x="858" y="517" width="120" height="20" rx="10"/>
+  <text class="badgeAT" x="918" y="531" text-anchor="middle">under construction</text>
+  <text class="sub" x="744" y="552">same seams · own id + version</text>
+  <text class="sub" x="744" y="569">will run alongside self-service</text>
+</svg>

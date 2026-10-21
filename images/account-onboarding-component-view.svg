@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 950" width="1100" height="950" role="img" aria-labelledby="title desc">
+  <title id="title">Component view</title>
+  <desc id="desc">A micro-frontend in the customer portal calls a thin BFF, which calls the onboarding backend service. Inside the service, a WebApi host and a command-processor host share one Clean Architecture core: Infrastructure wraps Application, which wraps the Domain with the workflow engine and variant plugins. The service depends on PostgreSQL, external systems, and queues with a message bus.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2f4f8"/>
+      <stop offset="1" stop-color="#e6eaf1"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4f6bff" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#4f6bff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ours" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5f7ff"/>
+      <stop offset="1" stop-color="#eaefff"/>
+    </linearGradient>
+    <linearGradient id="oursStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f6bff"/>
+      <stop offset="1" stop-color="#9b5cff"/>
+    </linearGradient>
+    <linearGradient id="ext" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#fbfcfe"/>
+    </linearGradient>
+    <linearGradient id="domain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3e9ff"/>
+      <stop offset="1" stop-color="#d6deff"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#0f172a" fill-opacity="0.08"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-25%" width="120%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#1e293b" flood-opacity="0.08"/>
+    </filter>
+    <marker id="aAccent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6d84ff"/>
+    </marker>
+    <marker id="aMuted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a7b2c6"/>
+    </marker>
+    <style>
+      text { font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.2px; fill: #4f6bff; }
+      .eyebrowS{ font-size: 10.5px; font-weight: 700; letter-spacing: 1.8px; fill: #7c8aa5; }
+      .h1      { font-size: 21px; font-weight: 600; fill: #0f172a; }
+      .ttl     { font-size: 14px; font-weight: 600; fill: #111827; }
+      .ttlL    { font-size: 16px; font-weight: 600; fill: #0b1020; }
+      .sub     { font-size: 11.5px; fill: #64748b; }
+      .subO    { font-size: 11.5px; fill: #4a58b8; }
+      .pill    { font-size: 11px; fill: #475569; }
+      .legend  { font-size: 11.5px; fill: #64748b; }
+      .chrome  { font-size: 11px; fill: #94a3b8; }
+      .tag     { font-size: 12px; font-weight: 600; fill: #3546b3; }
+      .cardO   { fill: url(#ours); stroke: url(#oursStroke); stroke-width: 1.5; filter: url(#shadow); }
+      .cardE   { fill: url(#ext); stroke: #dde3ee; stroke-width: 1.2; filter: url(#shadow); }
+      .glowO   { fill: none; stroke: #6d8dff; stroke-width: 6; stroke-opacity: 0.22; }
+      .tileO   { fill: #4f6bff; fill-opacity: 0.12; }
+      .tileE   { fill: #0f172a; fill-opacity: 0.05; }
+      .icO     { fill: none; stroke: #4f6bff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .icE     { fill: none; stroke: #64748b; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .lnO     { fill: none; stroke: #6d84ff; stroke-width: 1.8; }
+      .lnE     { fill: none; stroke: #a7b2c6; stroke-width: 1.5; }
+      .pillBg  { fill: #ffffff; stroke: #d6dce8; stroke-width: 1; }
+      .tagBg   { fill: #ffffff; stroke: url(#oursStroke); stroke-width: 1.4; filter: url(#shadow); }
+      .frame   { fill: #ffffff; fill-opacity: 0.45; stroke: url(#oursStroke); stroke-width: 1.5; stroke-dasharray: 7 5; }
+      .ring1   { fill: #ffffff; fill-opacity: 0.85; stroke: #c3cdfa; stroke-width: 1.2; filter: url(#shadow); }
+      .ring2   { fill: #f2f5ff; stroke: #a9b8fb; stroke-width: 1.2; }
+      .ring3   { fill: url(#domain); stroke: url(#oursStroke); stroke-width: 1.6; }
+    </style>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1100" height="950" rx="22" fill="url(#bg)"/>
+  <rect width="1100" height="950" rx="22" fill="url(#dots)"/>
+  <ellipse cx="550" cy="600" rx="460" ry="320" fill="url(#halo)"/>
+
+  <!-- Header -->
+  <text class="eyebrow" x="44" y="48">COMPONENT VIEW</text>
+  <text class="h1" x="44" y="76">Two hosts over one Clean Architecture core</text>
+  <circle cx="842" cy="56" r="5" fill="url(#oursStroke)"/>
+  <text class="legend" x="854" y="60">built in this project</text>
+  <circle cx="985" cy="56" r="5" fill="#c3ccdb"/>
+  <text class="legend" x="997" y="60">external</text>
+
+  <!-- ===== Connectors ===== -->
+  <path class="lnO" d="M550 214 V264" marker-end="url(#aAccent)"/>
+  <rect class="pillBg" x="478" y="228" width="144" height="22" rx="11"/>
+  <text class="pill" x="550" y="243" text-anchor="middle">HTTPS · UI-shaped API</text>
+
+  <path class="lnO" d="M550 334 V378" marker-end="url(#aAccent)"/>
+
+  <path class="lnO" d="M300 496 V522 H800 V496"/>
+  <path class="lnO" d="M550 522 V554" marker-end="url(#aAccent)"/>
+  <circle cx="550" cy="522" r="3.5" fill="#6d84ff"/>
+
+  <path class="lnE" d="M250 790 V844" marker-end="url(#aMuted)"/>
+  <rect class="pillBg" x="215" y="806" width="70" height="22" rx="11"/>
+  <text class="pill" x="250" y="821" text-anchor="middle">EF Core</text>
+  <path class="lnE" d="M550 790 V844" marker-end="url(#aMuted)"/>
+  <rect class="pillBg" x="512" y="806" width="76" height="22" rx="11"/>
+  <text class="pill" x="550" y="821" text-anchor="middle">adapters</text>
+  <path class="lnE" d="M850 790 V844" marker-end="url(#aMuted)"/>
+  <rect class="pillBg" x="766" y="806" width="168" height="22" rx="11"/>
+  <text class="pill" x="850" y="821" text-anchor="middle">enqueue · publish · consume</text>
+
+  <!-- ===== Micro-frontend in the portal ===== -->
+  <rect class="glowO" x="400" y="96" width="300" height="118" rx="14" filter="url(#glow)"/>
+  <rect x="400" y="96" width="300" height="118" rx="14" fill="#ffffff" stroke="#dde3ee" stroke-width="1.2" style="filter:url(#shadow)"/>
+  <path d="M400 122 H700" stroke="#e5e9f1" stroke-width="1"/>
+  <circle cx="417" cy="109" r="4" fill="#ff5f57" fill-opacity="0.85"/>
+  <circle cx="431" cy="109" r="4" fill="#febc2e" fill-opacity="0.85"/>
+  <circle cx="445" cy="109" r="4" fill="#28c840" fill-opacity="0.85"/>
+  <text class="chrome" x="462" y="113">Customer portal · app-shell</text>
+  <rect class="cardO" x="414" y="136" width="272" height="64" rx="11"/>
+  <rect class="tileO" x="428" y="152" width="32" height="32" rx="8"/>
+  <g transform="translate(436 160)">
+    <rect class="icO" x="1" y="2" width="14" height="12" rx="2"/>
+    <path class="icO" d="M1 6 H15 M6 6 V14"/>
+  </g>
+  <text class="ttl" x="472" y="163">Onboarding micro-frontend</text>
+  <text class="subO" x="472" y="182">screens · validation · events</text>
+
+  <!-- ===== BFF ===== -->
+  <rect class="glowO" x="400" y="270" width="300" height="64" rx="12" filter="url(#glow)"/>
+  <rect class="cardO" x="400" y="270" width="300" height="64" rx="12"/>
+  <rect class="tileO" x="414" y="286" width="32" height="32" rx="8"/>
+  <g transform="translate(422 294)">
+    <path class="icO" d="M1 5 L8 1 L15 5 L8 9 Z"/>
+    <path class="icO" d="M1 10 L8 14 L15 10"/>
+  </g>
+  <text class="ttl" x="458" y="297">Backend-for-frontend</text>
+  <text class="subO" x="458" y="316">thin · UI-shaped API · UI-only services</text>
+
+  <!-- ===== Service frame ===== -->
+  <rect class="frame" x="110" y="396" width="880" height="394" rx="18"/>
+  <rect class="tagBg" x="440" y="383" width="220" height="26" rx="13"/>
+  <text class="tag" x="550" y="400" text-anchor="middle">Onboarding backend service</text>
+
+  <!-- Hosts -->
+  <rect class="glowO" x="160" y="432" width="280" height="64" rx="12" filter="url(#glow)"/>
+  <rect class="cardO" x="160" y="432" width="280" height="64" rx="12"/>
+  <rect class="tileO" x="174" y="448" width="32" height="32" rx="8"/>
+  <g transform="translate(182 456)">
+    <circle class="icO" cx="8" cy="8" r="6.5"/>
+    <path class="icO" d="M1.5 8 H14.5 M8 1.5 C5.5 4 5.5 12 8 14.5 C10.5 12 10.5 4 8 1.5"/>
+  </g>
+  <text class="ttl" x="218" y="459">WebApi host</text>
+  <text class="subO" x="218" y="478">HTTP endpoints · synchronous</text>
+
+  <rect class="glowO" x="660" y="432" width="280" height="64" rx="12" filter="url(#glow)"/>
+  <rect class="cardO" x="660" y="432" width="280" height="64" rx="12"/>
+  <rect class="tileO" x="674" y="448" width="32" height="32" rx="8"/>
+  <g transform="translate(682 456)">
+    <path class="icO" d="M9.5 1 L3 9 H8 L6.5 15 L13 7 H8 Z"/>
+  </g>
+  <text class="ttl" x="718" y="459">Command-processor host</text>
+  <text class="subO" x="718" y="478">Azure Functions · queue &amp; timers</text>
+
+  <rect class="pillBg" x="467" y="453" width="166" height="22" rx="11"/>
+  <text class="pill" x="550" y="468" text-anchor="middle">two hosts, one shared core</text>
+
+  <!-- Core captions -->
+  <text class="eyebrowS" x="160" y="548">CLEAN ARCHITECTURE CORE</text>
+  <text class="eyebrowS" x="940" y="548" text-anchor="end">DEPENDENCIES POINT INWARD</text>
+
+  <!-- Concentric layers -->
+  <rect class="ring1" x="160" y="560" width="780" height="210" rx="16"/>
+  <rect class="tileO" x="176" y="574" width="32" height="32" rx="8"/>
+  <g transform="translate(184 582)">
+    <path class="icO" d="M5 1 V5 M11 1 V5 M3 5 H13 V8 C13 11 10.8 13 8 13 C5.2 13 3 11 3 8 Z M8 13 V15"/>
+  </g>
+  <text class="ttl" x="220" y="587">Infrastructure</text>
+  <text class="sub" x="220" y="604">EF Core · external adapters · messaging</text>
+
+  <rect class="ring2" x="220" y="618" width="660" height="140" rx="14"/>
+  <rect class="tileO" x="236" y="632" width="32" height="32" rx="8"/>
+  <g transform="translate(244 640)">
+    <path class="icO" d="M2 3 H14 M2 8 H10 M2 13 H12"/>
+  </g>
+  <text class="ttl" x="280" y="645">Application</text>
+  <text class="sub" x="280" y="662">use cases / orchestration</text>
+
+  <rect class="glowO" x="280" y="676" width="540" height="70" rx="12" filter="url(#glow)"/>
+  <rect class="ring3" x="280" y="676" width="540" height="70" rx="12"/>
+  <text class="ttlL" x="550" y="704" text-anchor="middle">Domain</text>
+  <text class="subO" x="550" y="725" text-anchor="middle">onboarding rules + state · workflow engine + variant plugins</text>
+
+  <!-- ===== Dependencies ===== -->
+  <rect class="cardE" x="110" y="850" width="280" height="64" rx="12"/>
+  <rect class="tileE" x="124" y="866" width="32" height="32" rx="8"/>
+  <g transform="translate(132 874)">
+    <ellipse class="icE" cx="8" cy="3.5" rx="6" ry="2.5"/>
+    <path class="icE" d="M2 3.5 V12.5 C2 13.9 4.7 15 8 15 C11.3 15 14 13.9 14 12.5 V3.5 M2 8 C2 9.4 4.7 10.5 8 10.5 C11.3 10.5 14 9.4 14 8"/>
+  </g>
+  <text class="ttl" x="168" y="877">PostgreSQL</text>
+  <text class="sub" x="168" y="896">state · outbox · audit history</text>
+
+  <rect class="cardE" x="410" y="850" width="280" height="64" rx="12"/>
+  <rect class="tileE" x="424" y="866" width="32" height="32" rx="8"/>
+  <g transform="translate(432 874)">
+    <path class="icE" d="M6.5 9.5 L9.5 6.5 M7 4 L8.8 2.2 C10.4 0.6 13 0.6 14.3 2 C15.7 3.3 15.7 5.9 14.1 7.5 L12.3 9.3 M9.3 12.3 L7.5 14.1 C5.9 15.7 3.3 15.7 2 14.3 C0.6 13 0.6 10.4 2.2 8.8 L4 7"/>
+  </g>
+  <text class="ttl" x="468" y="877">External systems</text>
+  <text class="sub" x="468" y="896">see System context</text>
+
+  <rect class="cardE" x="710" y="850" width="280" height="64" rx="12"/>
+  <rect class="tileE" x="724" y="866" width="32" height="32" rx="8"/>
+  <g transform="translate(732 874)">
+    <rect class="icE" x="1" y="2" width="14" height="3.5" rx="1"/>
+    <rect class="icE" x="1" y="6.5" width="14" height="3.5" rx="1"/>
+    <rect class="icE" x="1" y="11" width="14" height="3.5" rx="1"/>
+  </g>
+  <text class="ttl" x="768" y="877">Queues &amp; message bus</text>
+  <text class="sub" x="768" y="896">async commands · external replies</text>
+</svg>
